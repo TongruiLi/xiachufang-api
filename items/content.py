@@ -14,6 +14,7 @@ class Content(Item):
     tip = Css('div.tip')
 
     def clean_name(self, name):
+        #assert(isinstance(name, str))
         return name.strip()
 
     def clean_materials(self, nodes):
@@ -36,6 +37,9 @@ class Content(Item):
         return steps
 
     def clean_tip(self, tip):
+        #assert(isinstance(tip, str))
+        if not isinstance(tip, str):
+            tip = ""
         return tip.strip()
 
     class Meta:

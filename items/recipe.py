@@ -8,6 +8,7 @@ class Recipe(Item):
     cover = Css('div.recipe > a > div.cover > img', attr='data-src')
 
     def clean_name(self, name):
+        #assert(isinstance(name, str))
         return name.strip()
 
     class Meta:
