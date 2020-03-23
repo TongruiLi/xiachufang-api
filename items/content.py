@@ -8,6 +8,7 @@ class Content(Item):
     name = Css('h1.page-title[itemprop="name"]')
     cover = Css('div.recipe-show > div.cover > img', attr='src')
     grade = Css('div.recipe-show > div.container > div.stats > div.score > span.number')
+    cooked = Css("div.recipe-show > div.container > div.stats > div.cooked > span.number")
     materials = Css('div.recipe-show > div.ings > table tr')
     steps = Css('div.steps > ol li', attr='html')
     tip = Css('div.tip')
