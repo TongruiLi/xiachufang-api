@@ -15,13 +15,35 @@ class Content(Item):
 
     def clean_name(self, name):
         #assert(isinstance(name, str))
+        assert(name is not None)
         return name.strip()
 
     def clean_materials(self, nodes):
+        assert(nodes is not None)
+        #assert(nodes[0].findtext('td[@class="name"]') is not None)
+        materials = []
+        for node in nodes:
+            name1 = node.findtext('td[@class="name"]')
+            name2 = node.findtext('td[@class="name"]/a')
+            unit = node.findtext('td[@class="unit"]')
+            if (name1 is None and name2 is None) or unit is None:
+                pass
+            else: 
+                if name1 is None:
+                    name1 = ""
+                if name2 is None:
+                    name2 = ""
+                name = name1.strip() or name2.strip()
+                unit = unit.strip()
+                materials.append({"name": name, unit: "unit"})
+
+        """    
+        print(nodes[0].findtext('td[@class="unit"]'))
         materials = [{
             'name': node.findtext('td[@class="name"]').strip() or node.findtext('td[@class="name"]/a').strip(),
             'unit': node.findtext('td[@class="unit"]').strip()
         } for node in nodes]
+        """
         return materials
 
     def clean_steps(self, nodes):

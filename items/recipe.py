@@ -9,6 +9,7 @@ class Recipe(Item):
 
     def clean_name(self, name):
         #assert(isinstance(name, str))
+        assert(name is not None)
         return name.strip()
 
     class Meta:
